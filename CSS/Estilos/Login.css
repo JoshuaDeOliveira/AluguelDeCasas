@@ -1,0 +1,111 @@
+.Login{
+  min-height: 395px;
+  max-width: 370px;
+}
+
+.Titulo{
+  text-align: center;
+}
+
+.Entrar{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.MostrarSenha{
+  position: absolute;
+  bottom: 13px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.MostrarSenha > img{
+  opacity: 0.5;
+  height: 32px;
+}
+
+.Inserir{
+  margin: 8px 0px;
+  max-width: 250x;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.Inserir:focus{
+  outline: 1px solid lightblue;
+}
+
+.Opções-Login{
+  margin: 8px 0px;
+}
+
+.Opções{
+  color: rgb(64, 64, 238);
+  cursor: pointer;
+  margin-right: 8px;
+  font-weight: bolder;
+  transition: color 0.5s;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 500px) {
+  .Opções-Login{
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0.5rem 0px;
+  }
+}
+
+.Opções:hover{
+  color: gray;
+}
+
+.btn{
+  margin: 10px 0px;
+}
+
+.btn-enviar{
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+  color: white;
+  text-shadow: 1px 1px 2px black;
+  font-weight: bold;
+  background-color: rgb(41, 189, 41);
+  border: 2px solid black;
+  border-radius: 6px;
+  transition: transform 0.4s;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.Titulos{
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+  margin: 4px 0px;
+  font-size: 20px;
+  font-weight: bolder;
+}
+
+.Insira-Dados{
+  margin: 8px 0px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.erro-msg{
+  display: none;
+}
+
+.Error{
+  height: 10px;
+  color: red;
+  margin-bottom: 10px;
+}

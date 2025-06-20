@@ -1,0 +1,33 @@
+.DadosRegistro{
+  display: flex;
+  flex-direction: column;
+}
+
+.TitulosAlternativo{
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.InserirAlternativo{
+  margin: 5px 0px;
+  max-width: 250x;
+  padding: 4px 8px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.DadosRegistro{
+  position: relative;
+}
+
+.MostrarSenhas{
+  position: absolute;
+  cursor: pointer;
+  right: 10px;
+  top: 27px;
+}
+
+.MostrarSenhas > img{
+  height: 24px;
+}
