@@ -86,7 +86,10 @@ const HTML = {
         </div>
       </form>
       `,
-  Registrar: `<h1 class="Titulo">Registrar</h1>
+  Registrar: `
+  <h1 class="Titulo">Registrar</h1>
+  <div class="Error">
+  </div>
       <form>
         <div class="Insira-Dados">
           <div class="DadosRegistro">
@@ -182,6 +185,7 @@ function GuardarUsuario(){
   document.querySelector('form').addEventListener('submit', e => {
     e.preventDefault()
 
+    const error = document.querySelector('.Error')
     const newUsername = document.querySelector("#newuser").value
     const newName = document.querySelector("#newname").value
     const newEmail = document.querySelector("#newemail").value
@@ -189,8 +193,13 @@ function GuardarUsuario(){
     const newPass = document.querySelector("#newpassword").value
     const RepeatPass = document.querySelector("#repeatpassword").value
 
-    if (newEmail !== RepeatEmail) {
-      console.log('Email errado')
+    if (!newUsername.trim() || !newName || !newEmail.trim() || 
+    !newPass || !RepeatEmail || !RepeatPass) {
+      error.innerHTML = 'Preencha todos os dados'
+    } else if (newEmail.trim() !== RepeatEmail.trim()) {
+      error.innerHTML = 'Os Emails não concidem'
+    } else if (newPass !== RepeatPass) {
+      error.innerHTML = 'As Senhas não concidem'
     } else {
       const Usuario = {
         User: newUsername,

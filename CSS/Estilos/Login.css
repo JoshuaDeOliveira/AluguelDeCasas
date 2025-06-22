@@ -105,7 +105,9 @@ button:active {
 }
 
 .Error{
-  height: 10px;
-  color: red;
-  margin-bottom: 10px;
+  height: auto;
+  display: inline-block;
+  padding: 4px;
+  color: rgb(236, 39, 39);
+  margin-bottom: 4px;
 }
