@@ -1,33 +1,28 @@
+import {PegarData} from "../Dados/InformaçõesUser.js";
+
 export function RunLogin(){
   InserirHTML('Login')
   AdicionarEventosLogin()
-  MostrarSenha()
-
-  document.querySelector('.Opcão-Registrar').addEventListener('click', () => {
-    InserirHTML('Registrar')
-    AdicionarEventosRegistrar()
-  })
-
-  document.querySelector('.Opcão-Esqueci').addEventListener('click', () => {
-    console.log('Esqueci')
-  })
+  MostrarSenha('.MostrarSenha')
+  ValidarLogin()
 }
 
 function AdicionarEventosLogin() {
   document.querySelector('.Opcão-Registrar')?.addEventListener('click', () => {
     InserirHTML('Registrar')
     AdicionarEventosRegistrar()
+    MostrarSenha('.MostrarSenhas')
   })
 
   document.querySelector('.Opcão-Esqueci')?.addEventListener('click', () => {
     InserirHTML('Recuperar')
-    AdicionarEventosRecuperar()
   })
 }
 
 function AdicionarEventosRegistrar() {
   DivPass.classList.remove('Login')
   DivPass.classList.add('Recuperar')
+  GuardarUsuario()
 
   document.querySelector('.Opcão-Login')?.addEventListener('click', () => {
     InserirHTML('Login')
@@ -36,7 +31,6 @@ function AdicionarEventosRegistrar() {
 
   document.querySelector('.Opcão-Esqueci')?.addEventListener('click', () => {
     InserirHTML('Recuperar')
-    AdicionarEventosRecuperar()
   })
 
 }
@@ -50,12 +44,15 @@ function InserirHTML(Key) {
   DivPass.appendChild(div)
 }
 
-function MostrarSenha(){
-  const Password = document.querySelectorAll('.Senha')
+function MostrarSenha(Key){
+  const Password = document.querySelectorAll(Key)
   Password.forEach(button => {
     button.addEventListener('click', () => {
-    const visivel = Password.type === 'text';
-    Password.type = visivel ? 'password' : 'text';
+      const input = document.querySelector(button.dataset.target);
+      if (input) {
+        const visivel = input.type === 'text';
+        input.type = visivel ? 'password' : 'text';
+      }
   })
   })
 }
@@ -75,7 +72,7 @@ const HTML = {
             <label class="Titulos" for="password" autocapitalize="password">Senha</label>
             <input type="password" name="password" id="password" class="Inserir Senha" placeholder="Insira a sua senha" minlength="6" maxlength="18" autocomplete="current-password">
 
-            <span class="MostrarSenha">
+            <span class="MostrarSenha" data-target="#password">
               <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
             </span>
           </div>
@@ -94,29 +91,29 @@ const HTML = {
         <div class="Insira-Dados">
           <div class="DadosRegistro">
             <label class="TitulosAlternativo" for="username">Usuario</label>
-            <input class="InserirAlternativo" type="name" maxlength="24" placeholder="Digite seu Usuario">
+            <input class="InserirAlternativo" id="newuser" type="name" maxlength="24" placeholder="Digite seu Usuario">
           </div>
 
           <div class="DadosRegistro">
             <label class="TitulosAlternativo" for="viewername">Nome de Exibição</label>
-            <input class="InserirAlternativo" type="name" maxlength="24" placeholder="Digite seu Nome de Exibição">
+            <input class="InserirAlternativo" id="newname" type="name" maxlength="24" placeholder="Digite seu Nome de Exibição">
           </div>
 
           <div class="DadosRegistro">
             <label class="TitulosAlternativo" for="email">Email</label>
-            <input class="InserirAlternativo" type="email" autocomplete="email" placeholder="Insira seu Email">
+            <input class="InserirAlternativo" id="newemail" type="email" autocomplete="email" placeholder="Insira seu Email">
 
             <label class="TitulosAlternativo" for="repeatemail">Email Novamente</label>
-            <input class="InserirAlternativo" type="email" autocomplete="email" placeholder="Repita seu Email">
+            <input class="InserirAlternativo" id="repeatemail" type="email" autocomplete="email" placeholder="Repita seu Email">
           </div>
 
           <div class="DadosRegistro">
             <label class="TitulosAlternativo" for="password">
               Senha
             </label>
-            <input type="password" name="password" id="password1" class="InserirAlternativo" placeholder="Insira a sua senha" minlength="6" maxlength="18" autocomplete="new-password">
+            <input type="password" name="password" id="newpassword" class="InserirAlternativo" placeholder="Insira a sua senha" minlength="6" maxlength="18" autocomplete="new-password">
 
-            <span class="MostrarSenhas">
+            <span class="MostrarSenhas" data-target="#newpassword">
               <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
             </span>
           </div>
@@ -125,9 +122,9 @@ const HTML = {
             <label class="TitulosAlternativo" for="password">
               Senha Novamente
             </label>
-            <input type="password" name="password" id="password2" class="InserirAlternativo" placeholder="Repita a sua senha" minlength="6" maxlength="18" autocomplete="new-password">
+            <input type="password" name="password" id="repeatpassword" class="InserirAlternativo" placeholder="Repita a sua senha" minlength="6" maxlength="18" autocomplete="new-password">
 
-            <span class="MostrarSenhas">
+            <span class="MostrarSenhas" data-target="#repeatpassword">
               <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
             </span>
           </div>
@@ -160,4 +157,48 @@ const HTML = {
         </div>
       </form>
     `
+}
+
+function ValidarLogin(){
+  document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault()
+
+    const username = document.querySelector('#username').value
+    const password = document.querySelector('#password').value
+
+    const UsuariosRegistrados = PegarData()
+    const userValido = UsuariosRegistrados.find(user => user.Usuario === username && user.Senha === password)
+
+    if (userValido) {
+      console.log("Usuario encontrado")
+    } else {
+      console.log('Usuario Não encontrado')
+    }
+  }
+)
+}
+
+function GuardarUsuario(){
+  document.querySelector('form').addEventListener('submit', e => {
+    e.preventDefault()
+
+    const newUsername = document.querySelector("#newuser").value
+    const newName = document.querySelector("#newname").value
+    const newEmail = document.querySelector("#newemail").value
+    const RepeatEmail = document.querySelector("#repeatemail").value
+    const newPass = document.querySelector("#newpassword").value
+    const RepeatPass = document.querySelector("#repeatpassword").value
+
+    if (newEmail !== RepeatEmail) {
+      console.log('Email errado')
+    } else {
+      const Usuario = {
+        User: newUsername,
+        NameExibição: newName,
+        Password: newPass,
+        Email: newEmail
+      }
+      console.log(Usuario) 
+    }
+  })
 }

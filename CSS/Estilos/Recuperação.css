@@ -2,7 +2,7 @@
   display: flex;
   min-height: 395px;
   max-width: 370px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .Titulo{
