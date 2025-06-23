@@ -6,7 +6,7 @@ class Dados{
 
   constructor(Informações){
     this.Usuario = Informações.User
-    this.Nickname = Informações.NomeExibição
+    this.Nickname = Informações.Nickname
     this.Senha = Informações.Password
     this.Email = Informações.Email
   }
@@ -14,7 +14,7 @@ class Dados{
 
 let usuarios = []
 
-function GuardarInformações(Info){
+export function GuardarInformações(Info){
   const NovaUsuario = new Dados(Info)
   usuarios.push(NovaUsuario)
   SalvarData(usuarios)
