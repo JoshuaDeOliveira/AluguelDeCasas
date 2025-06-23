@@ -47,6 +47,10 @@
 input:focus + .tooltiptext {
   display: block;
   font-size: 13px;
-  color: #363636;
+  color: #eb2424;
   margin: 4px 0px;
+}
+
+input:focus + .toolcorrect {
+  color: rgb(62, 248, 62);
 }

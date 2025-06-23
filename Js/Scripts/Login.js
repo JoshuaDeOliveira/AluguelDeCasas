@@ -240,15 +240,17 @@ function HandleSubmit(e){
       MostrarErro('As senhas não coincidem', Visual.RepeatP, error)
       Visual.RepeatP.focus()
       HouveErro = true
-    } else {
+    } else { /*Testar Funcionalidade + Fazer uma funcionalidade que modifique toda vez que digitar*/
       const SenhaValida = VerificarSenhaFortaleza(Valores.Pass)
-      let HTML = 'A senha deve conter: '
+      let HTML = ''
       if (!SenhaValida.estaForte) {HTML += 'A Senha precisa ser mais forte' + ","} 
       if (!SenhaValida.temEspecial) {HTML += 'A Senha precisa de no minimo 1 Caractere especial' + ","} 
       if (!SenhaValida.temMaiuscula){HTML += 'A Senha precisa de no minimo 1 Letra maiscula' + ","} 
       if (!SenhaValida.temMinuscula) {HTML += 'A Senha precisa de no minimo 1 Letra miniscula' + ","} 
       if (!SenhaValida.temNumero) {HTML += 'A Senha precisa de no minimo 1 Numero' + ","}
-      document.querySelector('.tooltiptext')
+      const div = document.querySelector('.tooltiptext')
+      div.classList.add('.toolcorrect')
+      div.innerHTML = HTML
     }
     if (!HouveErro ) {
       const Usuario = {
