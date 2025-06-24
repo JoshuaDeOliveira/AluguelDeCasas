@@ -44,13 +44,27 @@
   display: none;
 }
 
-input:focus + .tooltiptext {
+input:focus + .tooltiptext{
   display: block;
   font-size: 13px;
   color: #eb2424;
   margin: 4px 0px;
 }
 
-input:focus + .toolcorrect {
-  color: rgb(62, 248, 62);
+#EmailCadastrado{
+  display: none;
+  font-size: 13px;
+  color: #63eb24;
+  margin: 4px 0px;
+}
+
+#UsuarioCadastrado{
+  display: none;
+  font-size: 13px;
+  color: #63eb24;
+  margin: 4px 0px;
+}
+
+.Feito{
+  color: #63eb24;
 }
