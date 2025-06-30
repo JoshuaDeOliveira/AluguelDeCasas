@@ -1,26 +1,32 @@
-.Recuperar{
+.TituloRecuperação{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.QualMetodo{
+  margin: 8px 0px;
+}
+
+.Instrucao{
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.Indicador{
+  font-size: 16px;
+  font-weight: bolder;
+}
+
+.Ajustes{
+  min-height: 380px;
   display: flex;
-  min-height: 395px;
-  max-width: 370px;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: space-evenly;
 }
 
-.Titulo{
-  margin-bottom: 10px;
-}
-
-@media screen and (max-width: 500px) {
-    .Titulo{
-      margin-bottom: 10px;
-    }
-
-    .Opções-Login {
-        display: flex;
-        flex-direction: row;
-        gap: 6px;
-        margin: 0.5rem 0px;
-    }
-}
-
-@media screen and (max-width: 320px) {
+.UserAccount{
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
 }

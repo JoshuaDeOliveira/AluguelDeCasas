@@ -21,4 +21,6 @@ main{
   display: flex;
   justify-content: center;
   flex-direction: column;
+  min-height: 395px;
+  max-width: 370px;
 }

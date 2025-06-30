@@ -5,8 +5,8 @@ export const HTML = {
         <div class="Insira-Dados">
 
           <div class="Entrar">
-            <label class="Titulos" for="username" >Usuário</label>
-            <input type="text" name="username" id="username" class="Inserir" autocomplete="username" placeholder="Insira o seu nome de usuário ou email">
+            <label class="Titulos" for="username">Usuário</label>
+            <input type="text" name="username" id="username" class="Inserir" autocomplete="username" placeholder="Insira o seu nome de usuário">
           </div>
 
           <div class="Entrar">
@@ -18,10 +18,15 @@ export const HTML = {
             </span>
           </div>
         </div>
+
+        <div class="Error">
+        </div>
+
         <div class="Opções-Login">
           <span class="Opções Opcão-Registrar">Registrar-se</span>
           <span class="Opções Opcão-Esqueci">Esqueci a Senha</span>
         </div>
+
         <div class="btn">
           <button class="btn-enviar">Enviar</button>
         </div>
@@ -35,8 +40,7 @@ export const HTML = {
             <label class="TitulosAlternativo" for="newuser">Usuario</label>
             <input class="InserirAlternativo" id="newuser" type="name" maxlength="24" placeholder="Digite seu Usuario">
           </div>
-          <div class="tooltiptext" id="UsuarioCadastrado">
-            Usuario liberado 
+          <div class="tooltiptext" id="UsuarioCadastrado"> 
           </div>
 
           <div class="DadosRegistro">
@@ -48,7 +52,6 @@ export const HTML = {
             <label class="TitulosAlternativo" for="newemail">Email</label>
             <input class="InserirAlternativo" id="newemail" type="email" autocomplete="email" placeholder="Insira seu Email">
             <div id="EmailCadastrado">
-              Email validado!
             </div>
 
             <label class="TitulosAlternativo" for="repeatemail">Email Novamente</label>
@@ -98,21 +101,31 @@ export const HTML = {
       </form>
       `,
   Recuperar: `
-      <h1 class="Titulo">Recuperação de Senha</h1>
-      <form>
-        <div class="Entrar">
-          <label class="Titulos" for="recovery-email">Email Recuperação</label>
-          <input class="Inserir" type="email">
+      <h1 class="TituloRecuperação">Recuperação de Senha</h1>
+      <div>
+        <p class="Instrucao">Informe o seu nome de utilizador e escolha o método que prefere para recuperar o acesso</p>
+        <div class="UserAccount">
+          <label class="Titulos" for="recovery-email">Email do Utilizador</label>
+          <input class="Inserir Usuario-js" type="email" placeholder="Digite o Email">
+        </div>
+        <div class="Error">
         </div>
 
-        <div class="Entrar">
-          <label class="Titulos" for="recovery-email">Codigo de Recuperação</label>
-          <input class="Inserir" type="email">
+        <h3>Escolha um método de recuperação</h3>     
+        <div class="QualMetodo">
+          <input type="radio" name="Opcão" value='Codigo' class="OpcaoRecuperacao">
+          <label class="Indicador" for="Recuperação-Codigo"><i class="far fa-envelope" aria-hidden="true"></i> Pergunta de Segurança</label>
         </div>
-
-        <div class="btn">
-          <button class="btn-enviar">Enviar Codigo</button>
-        </div>
-      </form>
-    `
+        <div class="QualMetodo">
+          <input type="radio" name="Opcão" value='Pergunta' class="OpcaoRecuperacao" checked>
+          <label class="Indicador" for="Recuperação-Codigo"><i class="fas fa-lock" aria-hidden="true"></i> Código enviado pelo email</label>
+         </div>
+      </div>
+      <div class="btn">
+        <button class="btn-enviar btn-recuperar">Recuperar Conta</button>
+      </div>
+    `,
+  RecuperarCodigo: `
+  `,
+  RecuperarPergunta: ``,
 } 

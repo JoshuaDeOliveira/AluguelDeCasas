@@ -2,8 +2,7 @@ import {PegarData} from "../Dados/InformaçõesUser.js";
 import {VerificarSenha, SenhasIguais} from "./VerificaçãoSenha.js";
 import {HTML} from "./Templates.js";
 import {GuardarUsuario} from "../Dados/VerificaçãoDados.js";
-import {EmailEhValido, UsuarioLiberado} from "./VerificaçãoUsuario.js";
-
+import {EmailEhValido, UsuarioLiberado, EmailIgual} from "./VerificaçãoUsuario.js";
 
 export function RunLogin(){
   InserirHTML('Login')
@@ -23,25 +22,31 @@ function AdicionarEventosLogin() {
 
   document.querySelector('.Opcão-Esqueci')?.addEventListener('click', () => {
     InserirHTML('Recuperar')
+    AdicionarEventosRecuperar()
   })
 }
 
 function AdicionarEventosRegistrar() {
   DivPass.classList.remove('Login')
-  DivPass.classList.add('Recuperar')
+  DivPass.classList.add('Registrar')
   GuardarUsuario()
 
   const Senha = document.querySelector('#newpassword')
   const SenhaRepeat = document.querySelector('#repeatpassword')
   const Email = document.querySelector('#newemail')
+  const EmailRepeat = document.querySelector('#repeatemail')
   const Usuario = document.querySelector('#newuser')
 
-  Usuario.addEventListener('input', () => {
-    UsuarioLiberado(Usuario.value)
+  Usuario.addEventListener('blur', () => {
+    UsuarioLiberado(Usuario)
   })
 
-  Email.addEventListener('input', () => {
-    EmailEhValido(Email.value)
+  Email.addEventListener('blur', () => {
+    EmailEhValido(Email.value, "#EmailCadastrado")
+  })
+
+  EmailRepeat.addEventListener('blur', () => {
+    EmailIgual(Email.value, EmailRepeat.value)
   })
 
   SenhaRepeat.addEventListener('input', () => {
@@ -58,12 +63,26 @@ function AdicionarEventosRegistrar() {
 
   document.querySelector('.Opcão-Esqueci')?.addEventListener('click', () => {
     InserirHTML('Recuperar')
+    AdicionarEventosRecuperar()
   })
 
 }
 
+function AdicionarEventosRecuperar(){
+  DivPass.classList.remove('Login')
+  DivPass.classList.add('Registrar')
+
+  document.querySelector(".btn-recuperar").addEventListener('click', () => {
+    const OpçãoEscolhida = document.querySelector('.OpcaoRecuperacao:checked')
+
+    const Usuario = document.querySelector('.Usuario-js').value
+    console.log(Usuario, OpçãoEscolhida.value)
+  })
+}
+
 function InserirHTML(Key) {
   const div = document.createElement('div')
+  div.classList.add('Ajustes')
   div.innerHTML = HTML[Key]
   DivPass.innerHTML = ''
   DivPass.appendChild(div)
@@ -92,14 +111,16 @@ function ValidarLogin(){
 
     const username = document.querySelector('#username').value
     const password = document.querySelector('#password').value
+    const Error = document.querySelector('.Error')
 
     const UsuariosRegistrados = PegarData()
     const userValido = UsuariosRegistrados.find(user => user.Usuario === username && user.Senha === password)
 
     if (userValido) {
-      console.log("Usuario encontrado")
+      Error.style.color = 'green'
+      window.location.href = 'Login efetuado com sucesso!'
     } else {
-      console.log('Usuario Não encontrado')
+      Error.innerHTML = 'Usuario ou Senha incorretos'
     }
   }
 )
