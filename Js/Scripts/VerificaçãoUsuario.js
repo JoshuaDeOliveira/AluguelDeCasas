@@ -9,45 +9,77 @@ export function EmailEhValido(Email, KeyDiv) {
   EmailDiv.style.display = 'block'
   if (Email == '') {
     EmailDiv.innerHTML = ''
-    return 
+    return false
   }
   if (!padraoEmail.test(Email) || !Email.includes("@") || !Email.includes(".")){
     EmailDiv.style.color = '#f34242'
     EmailDiv.innerHTML = 'Email esta digitado incorretamente'
-    return } 
+    return false
+  } 
   if (EmailExistente) {
     EmailDiv.style.color = '#38aa03'
-    EmailDiv.innerHTML = 'Email ja utizado!'
-    return}
+    EmailDiv.innerHTML = 'Email Cadastrado!'
+    return false
+  }
   EmailDiv.style.color = '#38aa03'
   EmailDiv.innerHTML = 'Email esta disponivel!'
+  return true
 }
-
 
 export function UsuarioLiberado(Usuario){ 
   const Informações = PegarData();
   const User = document.querySelector("#UsuarioCadastrado")
-  const Email = Usuario.value
 
-   if (!Email.trim()) {
+   if (!Usuario.trim()) {
     User.style.display = 'none'
-    return;
+    return false;
   }
 
-  const usuarioExiste = Informações.some(Info => Info.Usuario === Email);
+  const usuarioExiste = Informações.some(Info => Info.Usuario === Usuario);
 
   const mensagem = usuarioExiste
     ? 'Usuário já registrado, escolha outro usuario'
     : 'Usuário está liberado';
   const color = usuarioExiste ? '#eb2424' : '#63eb24'
+  const Deu = usuarioExiste ? false : true
 
-  User.innerHTML = mensagem;
+  User.textContent = mensagem;
   User.style.color = color
   User.style.display = 'block'
+  console.log(usuarioExiste)
+  return Deu
 }
 
 export function EmailIgual(Email, EmailRepeat){
-  if (Email !== EmailRepeat) {
-    'Os emails não coincidem, por favor verifique o email digitado'
+  const EmaiDiv = document.querySelector('#EmailRepetido')
+  if (Email === '' || EmailRepeat === '') {
+    return false 
   }
+  if (Email !== EmailRepeat) {
+    EmaiDiv.innerHTML = 'Os emails não coincidem, por favor verifique o email digitado'
+    return false
+  } else {
+    EmaiDiv.innerHTML = ''
+    return true
+  }
+}
+
+export function NomeLiberado(Name){
+  const Informações = PegarData()
+  const ExisteName = Informações.some(Info => Info.Nickname === Name)
+  const Nome = document.querySelector("#NomeCadastrado")
+
+  if (!Name.trim()) {
+    Nome.style.display = 'none'
+    return false 
+  }
+
+  const mensagem = ExisteName ? 'Nome ja foi cadastrado por outro usuario' : 'Nome liberado para uso!'
+  const color = ExisteName ? '#eb2424' : '#63eb24'
+  const Deu = ExisteName ? false : true 
+
+  Nome.textContent = mensagem;
+  Nome.style.color = color
+  Nome.style.display = 'block'
+  return Deu
 }

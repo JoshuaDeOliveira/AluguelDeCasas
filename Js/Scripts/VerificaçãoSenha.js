@@ -26,11 +26,24 @@ export function VerificarSenha(Senha){
   for (const [criterio, elemento] of Object.entries(elementos)) {
     estaCerto(SenhaValida[criterio], elemento)
   }
+  if (SenhaValida.temEspecial && SenhaValida.temMaiuscula && SenhaValida.temNumero) {
+    return true
+  } else {
+    return false 
+  }
 }
 
 export function SenhasIguais(Senha, SenhaRepeat){
+  const SenhaDiv = document.querySelector('.senhacorreta')
+  if (Senha === '' || SenhaRepeat === '') {
+    return false 
+  }
   if (SenhaRepeat === Senha) {
-    document.querySelector('.senhacorreta').classList.add('Feito')
+    SenhaDiv.classList.add('Feito')
+    return true
+  } else {
+    SenhaDiv.classList.remove('Feito')
+    return false
   }
 }
 

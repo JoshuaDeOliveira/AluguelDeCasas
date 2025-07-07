@@ -30,3 +30,7 @@
   flex-direction: column;
   margin-top: 12px;
 }
+
+.Errador{
+  border: 1px solid red;
+}

@@ -1,8 +1,7 @@
 import {PegarData} from "../Dados/InformaçõesUser.js";
-import {VerificarSenha, SenhasIguais} from "./VerificaçãoSenha.js";
 import {HTML} from "./Templates.js";
-import {GuardarUsuario} from "../Dados/VerificaçãoDados.js";
-import {EmailEhValido, UsuarioLiberado, EmailIgual} from "./VerificaçãoUsuario.js";
+import {ExecuçãoRegistro} from "../Dados/VerificaçãoDados.js";
+import {ValidaçãoEmail, ExecuçãoRecuperar} from "../Dados/RecuperçãoUsuario.js";
 
 export function RunLogin(){
   InserirHTML('Login')
@@ -29,32 +28,7 @@ function AdicionarEventosLogin() {
 function AdicionarEventosRegistrar() {
   DivPass.classList.remove('Login')
   DivPass.classList.add('Registrar')
-  GuardarUsuario()
-
-  const Senha = document.querySelector('#newpassword')
-  const SenhaRepeat = document.querySelector('#repeatpassword')
-  const Email = document.querySelector('#newemail')
-  const EmailRepeat = document.querySelector('#repeatemail')
-  const Usuario = document.querySelector('#newuser')
-
-  Usuario.addEventListener('blur', () => {
-    UsuarioLiberado(Usuario)
-  })
-
-  Email.addEventListener('blur', () => {
-    EmailEhValido(Email.value, "#EmailCadastrado")
-  })
-
-  EmailRepeat.addEventListener('blur', () => {
-    EmailIgual(Email.value, EmailRepeat.value)
-  })
-
-  SenhaRepeat.addEventListener('input', () => {
-    SenhasIguais(Senha.value, SenhaRepeat.value)
-  })
-  Senha.addEventListener('input', () => {
-    VerificarSenha(Senha.value)
-  })
+  ExecuçãoRegistro()
 
   document.querySelector('.Opcão-Login')?.addEventListener('click', () => {
     InserirHTML('Login')
@@ -65,7 +39,6 @@ function AdicionarEventosRegistrar() {
     InserirHTML('Recuperar')
     AdicionarEventosRecuperar()
   })
-
 }
 
 function AdicionarEventosRecuperar(){
@@ -73,14 +46,15 @@ function AdicionarEventosRecuperar(){
   DivPass.classList.add('Registrar')
 
   document.querySelector(".btn-recuperar").addEventListener('click', () => {
-    const OpçãoEscolhida = document.querySelector('.OpcaoRecuperacao:checked')
-
-    const Usuario = document.querySelector('.Usuario-js').value
-    console.log(Usuario, OpçãoEscolhida.value)
+    if (ValidaçãoEmail()) {
+      const OpçãoEscolhida = document.querySelector('.OpcaoRecuperacao:checked').value
+      const Email = document.querySelector('.Email-js').value
+      ExecuçãoRecuperar(Email, OpçãoEscolhida)  
+    }
   })
 }
 
-function InserirHTML(Key) {
+export function InserirHTML(Key) {
   const div = document.createElement('div')
   div.classList.add('Ajustes')
   div.innerHTML = HTML[Key]

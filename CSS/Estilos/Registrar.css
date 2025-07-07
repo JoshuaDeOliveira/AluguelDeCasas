@@ -21,6 +21,10 @@
   border: 1px solid black;
 }
 
+#EmailRepetido{
+  color: #eb2424;
+}
+
 .DadosRegistro{
   position: relative;
 }
@@ -62,9 +66,9 @@ input:focus + .tooltiptext{
   margin: 4px 0px;
 }
 
-#UsuarioCadastrado{
+.MensagemVerificação{
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   margin: 4px 0px;
 }
 

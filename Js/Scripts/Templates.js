@@ -40,12 +40,14 @@ export const HTML = {
             <label class="TitulosAlternativo" for="newuser">Usuario</label>
             <input class="InserirAlternativo" id="newuser" type="name" maxlength="24" placeholder="Digite seu Usuario">
           </div>
-          <div class="tooltiptext" id="UsuarioCadastrado"> 
+          <div class="MensagemVerificação" id="UsuarioCadastrado"> 
           </div>
 
           <div class="DadosRegistro">
             <label class="TitulosAlternativo" for="newname">Nome de Exibição</label>
             <input class="InserirAlternativo" id="newname" type="name" maxlength="24" placeholder="Digite seu Nome de Exibição">
+          </div>
+          <div class="MensagemVerificação" id="NomeCadastrado"> 
           </div>
 
           <div class="DadosRegistro">
@@ -56,6 +58,8 @@ export const HTML = {
 
             <label class="TitulosAlternativo" for="repeatemail">Email Novamente</label>
             <input class="InserirAlternativo" id="repeatemail" type="email" autocomplete="email" placeholder="Repita seu Email">
+            <div id="EmailRepetido">
+            </div>
           </div>
 
           <div class="DadosRegistro">
@@ -95,7 +99,7 @@ export const HTML = {
           </div>
         </div>
         <div class="btn">
-          <button class="btn-enviar">Enviar</button>
+          <button class="btn-enviar btn-registrar">Enviar</button>
         </div>
         </div>
       </form>
@@ -106,26 +110,26 @@ export const HTML = {
         <p class="Instrucao">Informe o seu nome de utilizador e escolha o método que prefere para recuperar o acesso</p>
         <div class="UserAccount">
           <label class="Titulos" for="recovery-email">Email do Utilizador</label>
-          <input class="Inserir Usuario-js" type="email" placeholder="Digite o Email">
-        </div>
-        <div class="Error">
+          <input class="Inserir Email-js" type="email" autocomplete="email" placeholder="Digite o Email">
+          <div class="Error">
+          </div>
         </div>
 
         <h3>Escolha um método de recuperação</h3>     
         <div class="QualMetodo">
-          <input type="radio" name="Opcão" value='Codigo' class="OpcaoRecuperacao">
-          <label class="Indicador" for="Recuperação-Codigo"><i class="far fa-envelope" aria-hidden="true"></i> Pergunta de Segurança</label>
+          <input type="radio" name="RecuperaçãoOpção" id="Recuperação-Codigo" value='Codigo' class="OpcaoRecuperacao">
+          <label class="Indicador" for="Recuperação-Codigo"><i class="far fa-envelope" aria-hidden="true"></i> Código enviado pelo email</label>
         </div>
         <div class="QualMetodo">
-          <input type="radio" name="Opcão" value='Pergunta' class="OpcaoRecuperacao" checked>
-          <label class="Indicador" for="Recuperação-Codigo"><i class="fas fa-lock" aria-hidden="true"></i> Código enviado pelo email</label>
+          <input type="radio" name="RecuperaçãoOpção" id="Recuperação-Pergunta" value='Pergunta' class="OpcaoRecuperacao" checked>
+          <label class="Indicador" for="Recuperação-Pergunta"><i class="fas fa-lock" aria-hidden="true"></i> Pergunta de Segurança</label>
          </div>
       </div>
       <div class="btn">
         <button class="btn-enviar btn-recuperar">Recuperar Conta</button>
       </div>
     `,
-  RecuperarCodigo: `
+  RecuperarCodigo: `<h1>Recuperação por Codigo</h1>
   `,
-  RecuperarPergunta: ``,
+  RecuperarPergunta: `<h1>Recuperação por Pergunta de Segurança</h1>`,
 } 

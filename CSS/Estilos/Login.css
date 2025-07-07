@@ -107,7 +107,7 @@ button:active {
 .Error{
   height: auto;
   display: inline-block;
-  padding: 4px;
   color: rgb(236, 39, 39);
-  margin-bottom: 4px;
+  margin: 4px 0px; 
+  font-size: 14px;
 }
