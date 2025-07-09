@@ -46,22 +46,7 @@ export function UsuarioLiberado(Usuario){
   User.textContent = mensagem;
   User.style.color = color
   User.style.display = 'block'
-  console.log(usuarioExiste)
   return Deu
-}
-
-export function EmailIgual(Email, EmailRepeat){
-  const EmaiDiv = document.querySelector('#EmailRepetido')
-  if (Email === '' || EmailRepeat === '') {
-    return false 
-  }
-  if (Email !== EmailRepeat) {
-    EmaiDiv.innerHTML = 'Os emails não coincidem, por favor verifique o email digitado'
-    return false
-  } else {
-    EmaiDiv.innerHTML = ''
-    return true
-  }
 }
 
 export function NomeLiberado(Name){

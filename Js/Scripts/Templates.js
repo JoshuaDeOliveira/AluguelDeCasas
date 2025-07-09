@@ -55,11 +55,6 @@ export const HTML = {
             <input class="InserirAlternativo" id="newemail" type="email" autocomplete="email" placeholder="Insira seu Email">
             <div id="EmailCadastrado">
             </div>
-
-            <label class="TitulosAlternativo" for="repeatemail">Email Novamente</label>
-            <input class="InserirAlternativo" id="repeatemail" type="email" autocomplete="email" placeholder="Repita seu Email">
-            <div id="EmailRepetido">
-            </div>
           </div>
 
           <div class="DadosRegistro">
@@ -88,6 +83,24 @@ export const HTML = {
             <span class="MostrarSenhas" data-target="#repeatpassword">
               <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
             </span>
+          </div>
+
+          <div class="DadosRegistro">
+            <p class="RespostaSegurança">Pergunta de Segurança</p>
+            <div>
+              <select id="OpçõesSegurança" class="Escondido Opções-js OpçõesSegurança">
+                <option value="O nome do seu pet?">O nome do seu pet?</option>
+                <option value="O nome da sua mae?">O nome da sua mae?</option>
+                <option value="Sua cor favorita?">Sua cor favorita?</option>
+                <option value="Seu jogo favorito?">Seu jogo favorito?</option>
+                <option value="Seu filme Favorito??">Seu filme Favorito?</option>
+              </select>
+              <label for="responseSegurity" id="PerguntaSe">O nome do seu pet?</label>
+              <span class="Opções Opção-Segurança">Select</span>
+            </div>
+            <input class="InserirAlternativo" id="responseSegurity" type="text" placeholder="Responda a Pergunta de Segurança">
+            <div id="EmailCadastrado">
+            </div>
           </div>
 
           <div class="Error">
@@ -129,7 +142,79 @@ export const HTML = {
         <button class="btn-enviar btn-recuperar">Recuperar Conta</button>
       </div>
     `,
-  RecuperarCodigo: `<h1>Recuperação por Codigo</h1>
+  RecuperarCodigo: `
+      <div>
+        <h1 class="TituloRecuperação">Recuperação por Codigo</h1>
+        <p class="ExplicaçãoCodigo">Insira o codigo enviado ao email do Usuario</p>
+      </div>
+      <div class="DadosRegistro">
+        <label for="Codigo-Segurança" class="CodigoSegurança">Codigo de Segurança</label>
+        <input class="Inserir" id="Codigo_Segurança" type="text" placeholder="Insira o Codigo"></input>
+      </div>
+
+      <div class="Error">
+      </div>
+
+      <div class="Opções-Login">
+          <button class="Opções Opcão-Reenviar">Reenviar Codigo</button>
+        </div>
+      <div class="btn">
+        <button class="btn-enviar btn-codigo">Enviar Codigo</button>
+      </div>
   `,
-  RecuperarPergunta: `<h1>Recuperação por Pergunta de Segurança</h1>`,
+  RecuperarPergunta: `
+      <h1 class="TituloRecuperação">Recuperação por Pergunta de Segurança</h1>
+      <p class="Explicação">Insira abaixo a resposta da pergunta de segurança escolhida pelo usuario</p>
+      <div>
+        <div class="DadosRegistro">
+          <label for="Pergunta-Segurança" class="PerguntaSegurança"></label>
+          <input class="Inserir" id="Pergunta_Segurança" type="text" placeholder="Resposta da Pergunta de Segurança"></input>
+          <div class="Error">
+          </div>
+        </div>
+        <div class="btn">
+          <button class="btn-enviar btn-resposta">Enviar Resposta</button>
+        </div>
+      </div>
+  `,
+  Senha: `
+  <h1 class="Titulo">Modificação Senha</h1>
+        <div class="Insira-Dados">
+
+          <div class="Entrar">
+            <label class="Titulos" for="newpassword">
+              Nova Senha
+            </label>
+            <input type="password" name="password" id="newpassword" class="Inserir" placeholder="Insira a sua nova senha" minlength="6" maxlength="18" >
+            <div class="tooltiptext">
+              A senha deve conter: <span class="temMaiuscula">1 maiúscula</span>, <span class='temMinuscula'>1 minúscula</span>, <span class="temNumero">1 número</span>, <span class="temEspecial">1 caractere especial</span>
+            </div>
+
+            <span class="MostrarSenhasNovas" data-target="#newpassword">
+              <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
+            </span>
+          </div>
+
+          <div class="Entrar">
+            <label class="Titulos" for="repeatpassword">
+              Nova Senha Novamente
+            </label>
+            <input type="password" name="password" id="repeatpassword" class="Inserir" placeholder="Repita a sua nova senha" minlength="6" maxlength="18" autocomplete="new-password">
+            <div class="tooltiptext">
+              <span class="senhacorreta">A senha deve ser igual a digitada anteriormente, seguindo as mesmas caracteristicas da senha anterior</span>
+            </div>
+
+            <span class="MostrarSenhasNovas" data-target="#repeatpassword">
+              <img src="./CSS/Imagens/eye-icon-1457.png" alt="">
+            </span>
+          </div>
+        </div>
+
+        <div class="Error">
+        </div>
+
+        <div class="btn">
+          <button class="btn-enviar btn-modificar">Modificar Senha</button>
+        </div>
+  `
 } 

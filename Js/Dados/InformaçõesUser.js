@@ -3,16 +3,20 @@ class Dados{
   Nickname;
   Senha;
   Email;
+  Pergunta;
+  Resposta;
 
   constructor(Informações){
     this.Usuario = Informações.User
     this.Nickname = Informações.Nickname
     this.Senha = Informações.Password
     this.Email = Informações.Email
+    this.Pergunta = Informações.Pergunta
+    this.Resposta = Informações.Resposta
   }
 }
 
-let usuarios = []
+let usuarios = PegarData() || []
 
 export function GuardarInformações(Info){
   const NovaUsuario = new Dados(Info)
@@ -20,7 +24,7 @@ export function GuardarInformações(Info){
   SalvarData(usuarios)
 }
 
-function SalvarData(Dados){
+export function SalvarData(Dados){
   localStorage.setItem('Usuarios' , JSON.stringify(Dados))
 }
 

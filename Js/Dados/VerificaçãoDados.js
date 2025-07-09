@@ -1,12 +1,10 @@
 import {GuardarInformações} from "./InformaçõesUser.js";
 import {VerificarSenha, SenhasIguais} from "../Scripts/VerificaçãoSenha.js";
-import {EmailEhValido, UsuarioLiberado, EmailIgual, NomeLiberado} from "../Scripts/VerificaçãoUsuario.js";
+import {EmailEhValido, UsuarioLiberado , NomeLiberado} from "../Scripts/VerificaçãoUsuario.js";
 
 function GuardarUsuario(){
   const form = document.querySelector('form')
-  console.log('Teste 1')
   if (!form.dataset.handlerAttached) {
-    console.log('Teste 2')
     form.addEventListener('submit', HandleSubmit(event))
     form.dataset.handlerAttached = "true"
   }
@@ -14,27 +12,25 @@ function GuardarUsuario(){
 
 function HandleSubmit(e){
     e.preventDefault()
-    console.log('Teste 3')
 
     const Valores = {
       User: document.querySelector("#newuser").value.trim(),
       Name: document.querySelector("#newname").value.trim(),
       Email: document.querySelector("#newemail").value.trim(),
       Pass: document.querySelector("#newpassword").value.trim(),
-      RepeatEmail: document.querySelector("#repeatemail").value.trim(),
-      RepeatPass: document.querySelector("#repeatpassword").value.trim()
+      RepeatPass: document.querySelector("#repeatpassword").value.trim(),
+      Resposta: document.querySelector('#responseSegurity').value.trim()
     }
 
     const Visual = {
       RepeatP: document.querySelector("#repeatpassword"),
-      RepeatE: document.querySelector("#repeatemail")
+      Pergunta: document.querySelector("#PerguntaSe").textContent
     }
 
     let HouveErro = false
 
     const error = document.querySelector('.Error')
     error.innerHTML = ""
-    Visual.RepeatE.classList.remove('ErrorRepeat')
     Visual.RepeatP.classList.remove('ErrorRepeat')
 
     /*Se existe outra verificação de erros, para qual motivação existe as verificações abaixo? Segurança! Enquanto programava essa simples tela de login me dei de cara com um bug, em que algumas medidas de segurança poderiam falar. Para isso as medidas abaixo*/
@@ -45,12 +41,6 @@ function HandleSubmit(e){
         HouveErro = true
         break
       }
-    } 
-    
-    if (Valores.Email !== Valores.RepeatEmail) {
-      MostrarErro('Os e-mails não coincidem', Visual.RepeatE, error)
-      Visual.RepeatE.focus()
-      HouveErro = true
     } 
     
     if (Valores.Pass !== Valores.RepeatPass) {
@@ -64,7 +54,9 @@ function HandleSubmit(e){
         User: Valores.User,
         Nickname: Valores.Name,
         Password: Valores.Pass,
-        Email: Valores.Email
+        Email: Valores.Email,
+        Pergunta: Visual.Pergunta,
+        Resposta: Valores.Resposta
       }
       GuardarInformações(Usuario)
       location.reload()
@@ -80,7 +72,6 @@ export function ExecuçãoRegistro(){
   const Senha = document.querySelector('#newpassword')
   const SenhaRepeat = document.querySelector('#repeatpassword')
   const Email = document.querySelector('#newemail')
-  const EmailRepeat = document.querySelector('#repeatemail')
   const Usuario = document.querySelector('#newuser')
   const Exibicao = document.querySelector('#newname')
   
@@ -96,16 +87,18 @@ export function ExecuçãoRegistro(){
     EmailEhValido(Email.value, "#EmailCadastrado")
   })
   
-  EmailRepeat.addEventListener('blur', () => {
-    EmailIgual(Email.value, EmailRepeat.value)
-  })
-
   Senha.addEventListener('input', () => {
     VerificarSenha(Senha.value)
   })
 
   SenhaRepeat.addEventListener('input', () => {
     SenhasIguais(Senha.value, SenhaRepeat.value)
+  })
+
+  document.querySelector('.Opção-Segurança').addEventListener('click', () => {
+    const Selecionado = document.querySelector('#PerguntaSe')
+    const Opções = document.querySelector('.Opções-js')
+    buttonSelect(Opções, Selecionado)
   })
 
   document.querySelector('.btn-registrar').addEventListener('click', (event) => {
@@ -123,12 +116,18 @@ export function ExecuçãoRegistro(){
 )
 }
 
+function buttonSelect(Opções, Frase){
+  Opções.classList.toggle('Escondido');
+  Frase.classList.toggle('Escondido');
+  if(!Frase.classList.contains('Escondido')){
+    Frase.textContent = Opções.value
+  } 
+}
 
 function VerificarErros(){
   const Senha = document.querySelector('#newpassword').value
   const SenhaRepeat = document.querySelector('#repeatpassword').value
   const Email = document.querySelector('#newemail').value
-  const EmailRepeat = document.querySelector('#repeatemail').value
   const Usuario = document.querySelector('#newuser').value
   const Exibicao = document.querySelector('#newname').value
 
@@ -137,10 +136,7 @@ function VerificarErros(){
   const TesteNick = NomeLiberado(Exibicao)
   const TesteSenhas = SenhasIguais(Senha, SenhaRepeat)
   const TesteEmail = EmailEhValido(Email, "#EmailCadastrado")
-  const TesteEmails = EmailIgual(Email, EmailRepeat)
 
-  console.log(TesteSenha, TesteUsuario, TesteNick, TesteSenhas, TesteEmail, TesteEmails)
-  console.log(TesteSenha && TesteUsuario && TesteNick && TesteSenhas && TesteEmail && TesteEmails)
-  return TesteSenha && TesteUsuario && TesteNick && TesteSenhas && TesteEmail && TesteEmails
+  return TesteSenha && TesteUsuario && TesteNick && TesteSenhas && TesteEmail
 }
 

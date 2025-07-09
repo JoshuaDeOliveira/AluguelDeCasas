@@ -66,7 +66,7 @@ export function InserirHTML(Key) {
   }, 0)
 }
 
-function MostrarSenha(Key){
+export function MostrarSenha(Key){
   const Password = document.querySelectorAll(Key)
   Password.forEach(button => {
     button.addEventListener('click', () => {
@@ -92,9 +92,10 @@ function ValidarLogin(){
 
     if (userValido) {
       Error.style.color = 'green'
-      window.location.href = 'Login efetuado com sucesso!'
+      Error.textContent = 'Login efetuado com sucesso!'
+      alert('FEITO! MUITO OBRIGADO POR TESTAR! :)')
     } else {
-      Error.innerHTML = 'Usuario ou Senha incorretos'
+      Error.textContent = 'Usuario ou Senha incorretos'
     }
   }
 )

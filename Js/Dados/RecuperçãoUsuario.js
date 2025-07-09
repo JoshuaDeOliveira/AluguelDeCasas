@@ -1,5 +1,6 @@
 import {PegarData} from "../Dados/InformaçõesUser.js";
 import {InserirHTML} from "../Scripts/Login.js";
+import {RespostaCerta, ExecuçãoCodigo} from "../Scripts/VerificaçãoRecuperação.js";
 
 export function ValidaçãoEmail(){
   const Email = document.querySelector('.Email-js')
@@ -37,16 +38,54 @@ function ProcurarEmail(Email){
   }
 }
 
-export function ExecuçãoRecuperar(Email, Opção){
+export function ExecuçãoRecuperar(Email, Opção){  
+  const Informações = PegarData()
+  const UsuarioEncontrado = Informações.find(Info => Info.Email === Email)
+
   switch (Opção) {
     case 'Pergunta':
       InserirHTML('RecuperarPergunta')
+      document.querySelector('.PerguntaSegurança').textContent =  UsuarioEncontrado.Pergunta
+      RespostaCerta(UsuarioEncontrado)
       break;
     case 'Codigo':
       InserirHTML('RecuperarCodigo')
+      ExecuçãoCodigo(UsuarioEncontrado)
       break;
     default:
       console.log('Nenhuma opção escolhida')
       break;
   }
+
+  const Window = document.querySelector('.Window')
+  const Ajustes = document.querySelector('.Ajustes')
+
+  Window.style.minHeight = '300px'
+  Ajustes.style.minHeight = '300px'
+}
+
+export function EnviarCodigo(EmailDestino, CodigoSegurança){
+  const TemplateParametro = {
+    email: EmailDestino,
+    codigo: CodigoSegurança
+  }
+
+  emailjs.send('service_u39lu6x', 'template_ey5mc8i', TemplateParametro)
+    .then((response) => {
+      console.log('Email enviado com sucesso!', response.status, response.text)
+    })
+    .catch((error) => {
+      console.log('Falha em enviar o Email', error) 
+    })
+}
+
+export function Codigo(){
+  const caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let codigo = '';
+  const tamanho = 7
+  for (let i = 0; i < tamanho; i++) {
+    const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+    codigo += caracteres.charAt(indiceAleatorio);
+  }
+  return codigo;
 }
