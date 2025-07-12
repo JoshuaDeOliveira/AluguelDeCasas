@@ -78,6 +78,7 @@ export function ExecuçãoCodigo(User){
 
     if(VerificarCodigo(CodigoSegurança, CodigoDigitado)){
       InserirHTML('Senha')
+      ExecuçãoNovaSenha(User)
     } else {
       document.querySelector('.Error').textContent = 'O Codigo digitado esta incorreto. Aperte ReenviarCodigo ou tente inserir novamente'
     }

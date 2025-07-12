@@ -21,12 +21,13 @@ export function VerificarSenha(Senha){
     temMinuscula: document.querySelector('.temMinuscula'),
     temNumero: document.querySelector('.temNumero'),
     temEspecial: document.querySelector('.temEspecial'),
+    estaForte: document.querySelector('.tooltiptext')
   }
 
   for (const [criterio, elemento] of Object.entries(elementos)) {
     estaCerto(SenhaValida[criterio], elemento)
   }
-  if (SenhaValida.temEspecial && SenhaValida.temMaiuscula && SenhaValida.temNumero) {
+  if (SenhaValida.temEspecial && SenhaValida.temMaiuscula && SenhaValida.temNumero && SenhaValida.temMinuscula) {
     return true
   } else {
     return false 

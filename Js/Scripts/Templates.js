@@ -185,7 +185,7 @@ export const HTML = {
             <label class="Titulos" for="newpassword">
               Nova Senha
             </label>
-            <input type="password" name="password" id="newpassword" class="Inserir" placeholder="Insira a sua nova senha" minlength="6" maxlength="18" >
+            <input type="password" name="password" id="newpassword" class="Inserir" placeholder="Insira a sua nova senha" minlength="6" maxlength="18">
             <div class="tooltiptext">
               A senha deve conter: <span class="temMaiuscula">1 maiúscula</span>, <span class='temMinuscula'>1 minúscula</span>, <span class="temNumero">1 número</span>, <span class="temEspecial">1 caractere especial</span>
             </div>
